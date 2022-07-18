@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 18 2022 г., 09:40
+-- Время создания: Июл 18 2022 г., 10:11
 -- Версия сервера: 5.7.36
 -- Версия PHP: 7.4.26
 
@@ -122,13 +122,24 @@ INSERT INTO `ingridijentas` (`id`, `pavadinimas`, `kalorijos_per100g`, `kaina`) 
 
 DROP TABLE IF EXISTS `ingridijentas_alergenas`;
 CREATE TABLE IF NOT EXISTS `ingridijentas_alergenas` (
-  `id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ingridijento_id` smallint(5) UNSIGNED NOT NULL,
   `alergeno_id` smallint(5) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `ingridijento_id` (`ingridijento_id`),
   KEY `alergeno_id` (`alergeno_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ingridijentas_alergenas`
+--
+
+INSERT INTO `ingridijentas_alergenas` (`ingridijento_id`, `alergeno_id`) VALUES
+(4, 7),
+(5, 1),
+(8, 7),
+(9, 6),
+(9, 11),
+(15, 1),
+(16, 1);
 
 -- --------------------------------------------------------
 
@@ -195,13 +206,25 @@ INSERT INTO `receptas` (`id`, `pavadinimas`, `murodymai`, `kalorijos_100g`, `kai
 
 DROP TABLE IF EXISTS `receptas_alergenas`;
 CREATE TABLE IF NOT EXISTS `receptas_alergenas` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `recepto_id` smallint(5) UNSIGNED NOT NULL,
   `alergeno_id` smallint(5) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `recepto_id` (`recepto_id`),
   KEY `alergeno_id` (`alergeno_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `receptas_alergenas`
+--
+
+INSERT INTO `receptas_alergenas` (`recepto_id`, `alergeno_id`) VALUES
+(1, 1),
+(5, 7),
+(6, 7),
+(7, 11),
+(7, 6),
+(8, 7),
+(9, 1),
+(10, 1);
 
 -- --------------------------------------------------------
 
@@ -211,13 +234,38 @@ CREATE TABLE IF NOT EXISTS `receptas_alergenas` (
 
 DROP TABLE IF EXISTS `receptas_dieta`;
 CREATE TABLE IF NOT EXISTS `receptas_dieta` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `recepto_id` smallint(5) UNSIGNED NOT NULL,
   `dietos_id` smallint(4) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `recepto_id` (`recepto_id`),
   KEY `dietos_id` (`dietos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `receptas_dieta`
+--
+
+INSERT INTO `receptas_dieta` (`recepto_id`, `dietos_id`) VALUES
+(1, 1),
+(3, 1),
+(5, 1),
+(2, 1),
+(5, 2),
+(7, 2),
+(2, 2),
+(1, 2),
+(6, 2),
+(8, 2),
+(6, 2),
+(3, 2),
+(1, 3),
+(3, 3),
+(7, 3),
+(9, 3),
+(1, 3),
+(2, 3),
+(5, 3),
+(10, 3),
+(7, 3);
 
 -- --------------------------------------------------------
 
@@ -227,13 +275,46 @@ CREATE TABLE IF NOT EXISTS `receptas_dieta` (
 
 DROP TABLE IF EXISTS `receptas_ingridijientas_sujungimas`;
 CREATE TABLE IF NOT EXISTS `receptas_ingridijientas_sujungimas` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `receptas_id` smallint(5) UNSIGNED NOT NULL,
   `ingridijentas_id` smallint(5) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `ingridijentas_id` (`ingridijentas_id`),
   KEY `receptas_id` (`receptas_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `receptas_ingridijientas_sujungimas`
+--
+
+INSERT INTO `receptas_ingridijientas_sujungimas` (`receptas_id`, `ingridijentas_id`) VALUES
+(1, 6),
+(1, 13),
+(1, 14),
+(1, 15),
+(2, 12),
+(2, 13),
+(2, 14),
+(3, 2),
+(3, 6),
+(4, 1),
+(4, 6),
+(4, 12),
+(5, 6),
+(5, 7),
+(5, 8),
+(6, 4),
+(6, 7),
+(7, 1),
+(7, 9),
+(8, 6),
+(8, 8),
+(8, 10),
+(8, 11),
+(8, 12),
+(9, 4),
+(9, 5),
+(10, 3),
+(10, 4),
+(10, 16);
 
 -- --------------------------------------------------------
 
@@ -243,13 +324,28 @@ CREATE TABLE IF NOT EXISTS `receptas_ingridijientas_sujungimas` (
 
 DROP TABLE IF EXISTS `receptas_kategorija`;
 CREATE TABLE IF NOT EXISTS `receptas_kategorija` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `recepto_id` smallint(5) UNSIGNED NOT NULL,
   `kategorijos_id` smallint(5) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `recepto_id` (`recepto_id`),
   KEY `kategorijos_id` (`kategorijos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `receptas_kategorija`
+--
+
+INSERT INTO `receptas_kategorija` (`recepto_id`, `kategorijos_id`) VALUES
+(1, 1),
+(2, 1),
+(2, 2),
+(3, 3),
+(4, 3),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 5),
+(9, 3),
+(10, 6);
 
 -- --------------------------------------------------------
 
