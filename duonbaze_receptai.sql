@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 15 2022 г., 14:28
+-- Время создания: Июл 18 2022 г., 09:40
 -- Версия сервера: 5.7.36
 -- Версия PHP: 7.4.26
 
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `ingridijentas`;
 CREATE TABLE IF NOT EXISTS `ingridijentas` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pavadinimas` varchar(50) NOT NULL,
-  `kalorijos_per100g` int(40) NOT NULL,
+  `kalorijos_per100g` decimal(6,2) NOT NULL,
   `kaina` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
@@ -97,22 +97,38 @@ CREATE TABLE IF NOT EXISTS `ingridijentas` (
 --
 
 INSERT INTO `ingridijentas` (`id`, `pavadinimas`, `kalorijos_per100g`, `kaina`) VALUES
-(1, 'Vištiena', 166, '6.12'),
-(2, 'Jautienos faršas', 39, '8.55'),
-(3, 'Braškės', 309, '3.53'),
-(4, 'Pienas', 243, '4.53'),
-(5, 'Avižiniai dribsniai', 45, '3.59'),
-(6, 'Svogūnas', 72, '2.53'),
-(7, 'Bulvės', 313, '9.44'),
-(8, 'Grietinė', 307, '5.93'),
-(9, 'Teriyaki marinatas', 134, '3.85'),
-(10, 'Lęšiai', 290, '10.21'),
-(11, 'Avinžirniai', 423, '6.99'),
-(12, 'Petražolė', 318, '1.57'),
-(13, 'Pomidoras', 311, '8.87'),
-(14, 'Agurkas', 436, '3.59'),
-(15, 'Couscous', 84, '2.57'),
-(16, 'Duona', 44, '0.69');
+(1, 'Vištiena', '166.00', '6.12'),
+(2, 'Jautienos faršas', '39.00', '8.55'),
+(3, 'Braškės', '309.00', '3.53'),
+(4, 'Pienas', '243.00', '4.53'),
+(5, 'Avižiniai dribsniai', '45.00', '3.59'),
+(6, 'Svogūnas', '72.00', '2.53'),
+(7, 'Bulvės', '313.00', '9.44'),
+(8, 'Grietinė', '307.00', '5.93'),
+(9, 'Teriyaki marinatas', '134.00', '3.85'),
+(10, 'Lęšiai', '290.00', '10.21'),
+(11, 'Avinžirniai', '423.00', '6.99'),
+(12, 'Petražolė', '318.00', '1.57'),
+(13, 'Pomidoras', '311.00', '8.87'),
+(14, 'Agurkas', '436.00', '3.59'),
+(15, 'Couscous', '84.00', '2.57'),
+(16, 'Duona', '44.00', '0.69');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ingridijentas_alergenas`
+--
+
+DROP TABLE IF EXISTS `ingridijentas_alergenas`;
+CREATE TABLE IF NOT EXISTS `ingridijentas_alergenas` (
+  `id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ingridijento_id` smallint(5) UNSIGNED NOT NULL,
+  `alergeno_id` smallint(5) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ingridijento_id` (`ingridijento_id`),
+  KEY `alergeno_id` (`alergeno_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -150,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `receptas` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pavadinimas` varchar(50) NOT NULL,
   `murodymai` varchar(300) NOT NULL,
-  `kalorijos_100g` decimal(6,0) NOT NULL,
+  `kalorijos_100g` decimal(6,2) NOT NULL,
   `kaina` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -160,16 +176,16 @@ CREATE TABLE IF NOT EXISTS `receptas` (
 --
 
 INSERT INTO `receptas` (`id`, `pavadinimas`, `murodymai`, `kalorijos_100g`, `kaina`) VALUES
-(1, 'Tabule couscous salotos', '1. Paruošiame couscous 2. Supjausstom daržoves ir viską suberiam į vieną.', '564', '6.85'),
-(2, 'Tablue lebanietiškos salotos', '1. Supjausstom daržoves ir viską suberiam į vieną.', '831', '15.03'),
-(3, 'Jautienos faršas su svogūnais', '1. Pakepiname faršą. 2. Pakepinam svogūną. 3. Viską į vieną', '622', '12.97'),
-(4, 'Kepta vištiena su svogūnu ir petražolėmis', '1. Supjaustome vištieną. 2. Pakepiname vištieną 3. Pakepiname svogūną ir petražolę. 4.Viską į vieną', '663', '26.86'),
-(5, 'Keptos bulvės su grietine', '1. Supjaustom bulves ir svogūną. 2. Pakepinam bulves ir svogūną. 3. Sumaišome su grietine', '754', '19.22'),
-(6, 'Bulvių košė', '1. Supjaustyti bulves 2. Išvirti 3. Sutrinti bulves maišant su pienu', '352', '9.52'),
-(7, 'Teriyaki vištiena', '1. Supjaustyti juostelėmis vištieną. 2. Užmarinuoti teriyaki padaže. 3. Iškepti', '329', '18.76'),
-(8, 'Lęšių ir avinžirnių sriuba', '1. Supjaustyt daržoves. 2. Virti daržoves ir lęšius. 3. Sutrinti daržoves ir lęšius. 4. Įdėti avinžirnius ir truputį pavirti. 5. Pateikti su grietine', '1410', '27.23'),
-(9, 'Avižinė košė', '1. Išvirti dribsnius piene', '288', '8.12'),
-(10, 'Mutinys', '1. Sumaišyti duoną, braškes ir pieną', '596', '8.75');
+(1, 'Tabule couscous salotos', '1. Paruošiame couscous 2. Supjausstom daržoves ir viską suberiam į vieną.', '564.00', '6.85'),
+(2, 'Tablue lebanietiškos salotos', '1. Supjausstom daržoves ir viską suberiam į vieną.', '831.00', '15.03'),
+(3, 'Jautienos faršas su svogūnais', '1. Pakepiname faršą. 2. Pakepinam svogūną. 3. Viską į vieną', '622.00', '12.97'),
+(4, 'Kepta vištiena su svogūnu ir petražolėmis', '1. Supjaustome vištieną. 2. Pakepiname vištieną 3. Pakepiname svogūną ir petražolę. 4.Viską į vieną', '663.00', '26.86'),
+(5, 'Keptos bulvės su grietine', '1. Supjaustom bulves ir svogūną. 2. Pakepinam bulves ir svogūną. 3. Sumaišome su grietine', '754.00', '19.22'),
+(6, 'Bulvių košė', '1. Supjaustyti bulves 2. Išvirti 3. Sutrinti bulves maišant su pienu', '352.00', '9.52'),
+(7, 'Teriyaki vištiena', '1. Supjaustyti juostelėmis vištieną. 2. Užmarinuoti teriyaki padaže. 3. Iškepti', '329.00', '18.76'),
+(8, 'Lęšių ir avinžirnių sriuba', '1. Supjaustyt daržoves. 2. Virti daržoves ir lęšius. 3. Sutrinti daržoves ir lęšius. 4. Įdėti avinžirnius ir truputį pavirti. 5. Pateikti su grietine', '1410.00', '27.23'),
+(9, 'Avižinė košė', '1. Išvirti dribsnius piene', '288.00', '8.12'),
+(10, 'Mutinys', '1. Sumaišyti duoną, braškes ir pieną', '596.00', '8.75');
 
 -- --------------------------------------------------------
 
@@ -262,6 +278,13 @@ INSERT INTO `vartotojas` (`username`, `pasword`) VALUES
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `ingridijentas_alergenas`
+--
+ALTER TABLE `ingridijentas_alergenas`
+  ADD CONSTRAINT `ingridijentas_alergenas_ibfk_1` FOREIGN KEY (`ingridijento_id`) REFERENCES `ingridijentas` (`id`),
+  ADD CONSTRAINT `ingridijentas_alergenas_ibfk_2` FOREIGN KEY (`alergeno_id`) REFERENCES `alergijos` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `receptas_alergenas`
