@@ -429,3 +429,7 @@ FROM
     ingridijentas
 WHERE
     kaina > 2.2 AND kaina < 20; 
+
+    -------- id tarp 6 ir 10
+    SELECT id FROM ingridijentas 
+    WHERE id >= 6 AND id <= 10;
