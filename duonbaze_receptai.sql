@@ -449,3 +449,8 @@ AS AVG FROM receptas;
 ------- VISU receptu kainos suma
 SELECT SUM(kaina) AS AVG 
 FROM receptas;
+
+---- receptu kategorija nuo 6 iki 10 su maziau nei 500ccal
+SELECT id,pavadinimas 
+FROM receptas 
+WHERE id>=3 AND id<=10 OR kalorijos_100g>500;
