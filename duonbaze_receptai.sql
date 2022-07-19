@@ -445,3 +445,7 @@ FROM receptas;
 ------ vidutine recepto kaina
 SELECT AVG(kaina) 
 AS AVG FROM receptas;
+
+------- VISU receptu kainos suma
+SELECT SUM(kaina) AS AVG 
+FROM receptas;
