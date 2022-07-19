@@ -442,3 +442,6 @@ FROM
     ------ recepto id ir pavadinimas 
     SELECT id, pavadinimas
 FROM receptas;
+------ vidutine recepto kaina
+SELECT AVG(kaina) 
+AS AVG FROM receptas;
