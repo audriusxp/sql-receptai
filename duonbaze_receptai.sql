@@ -474,3 +474,14 @@ FROM receptas;
 SELECT MAX(kalorijos_100g),pavadinimas, nurodymai
 FROM receptas;
 
+------3 diziausios kainos
+SELECT
+    kaina
+FROM
+    receptas
+ORDER BY
+    kaina
+DESC
+LIMIT 3;
+
+
