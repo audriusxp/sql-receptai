@@ -414,3 +414,9 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--  Surandame visu produktu kaina
+SELECT SUM(kaina) FROM ingridijentas;
+-- suranda produktus kuriu kalorijos maziau 90
+Select kalorijos_per100g From ingridijentas
+ WHERE kalorijos_per100g < 90;
