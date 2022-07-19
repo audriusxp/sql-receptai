@@ -461,9 +461,10 @@ FROM receptas
 WHERE kaina<10 AND kalorijos_100g<350;
 
 ---- vidutines kalorijos 1-5 recepto
+
 SELECT AVG(kalorijos_100g)
 FROM receptas
-WHERE id<=1 AND id<=5;
+WHERE id >= 1 AND id <= 5;
 
 ------brangiausio recepto pavadinimas
 SELECT MAX(pavadinimas)
