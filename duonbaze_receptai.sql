@@ -468,3 +468,8 @@ WHERE id<=1 AND id<=5;
 ------brangiausio recepto pavadinimas
 SELECT MAX(pavadinimas)
 FROM receptas;
+
+-----daugiausiai kaloriju turintis patiekalas su patiekalo pavadinimu ir nurodymais
+SELECT MAX(kalorijos_100g),pavadinimas, nurodymai
+FROM receptas;
+
