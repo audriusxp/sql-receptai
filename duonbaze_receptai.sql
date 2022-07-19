@@ -454,3 +454,8 @@ FROM receptas;
 SELECT id,pavadinimas 
 FROM receptas 
 WHERE id>=3 AND id<=10 OR kalorijos_100g>500;
+
+-------- kaina maziau 10 ir maziau kalorija nei 350
+SELECT pavadinimas,nurodymai 
+FROM receptas
+WHERE kaina<10 AND kalorijos_100g<350;
