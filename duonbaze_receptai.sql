@@ -484,4 +484,15 @@ ORDER BY
 DESC
 LIMIT 3;
 
+---- grazina 5 pigiausius produktus, rodo kaina ,id ir pavadinima
+SELECT
+    kaina,id,pavadinimas
+FROM
+    receptas
+ORDER BY
+    kaina
+ASC
+LIMIT 5;
+
+
 
