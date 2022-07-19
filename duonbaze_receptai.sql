@@ -433,3 +433,8 @@ WHERE
     -------- id tarp 6 ir 10
     SELECT id FROM ingridijentas 
     WHERE id >= 6 AND id <= 10;
+    ----  mkasimali indigijentao kaina
+    SELECT
+    MAX(kaina) AS MAX
+FROM
+    ingridijentas;
