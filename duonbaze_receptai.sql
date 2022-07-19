@@ -438,3 +438,7 @@ WHERE
     MAX(kaina) AS MAX
 FROM
     ingridijentas;
+
+    ------ recepto id ir pavadinimas 
+    SELECT id, pavadinimas
+FROM receptas;
