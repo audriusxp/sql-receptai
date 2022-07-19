@@ -459,3 +459,8 @@ WHERE id>=3 AND id<=10 OR kalorijos_100g>500;
 SELECT pavadinimas,nurodymai 
 FROM receptas
 WHERE kaina<10 AND kalorijos_100g<350;
+
+---- vidutines kalorijos 1-5 recepto
+SELECT AVG(kalorijos_100g)
+FROM receptas
+WHERE id<=1 AND id<=5;
