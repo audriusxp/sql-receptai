@@ -420,3 +420,12 @@ SELECT SUM(kaina) FROM ingridijentas;
 -- suranda produktus kuriu kalorijos maziau 90
 Select kalorijos_per100g From ingridijentas
  WHERE kalorijos_per100g < 90;
+ 
+
+ --- prekiu pavadinimas ir kaina didensi nei 2.2 bet maziau 5.8
+SELECT
+    pavadinimas ,kaina
+FROM
+    ingridijentas
+WHERE
+    kaina > 2.2 AND kaina < 20; 
