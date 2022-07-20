@@ -494,5 +494,20 @@ ORDER BY
 ASC
 LIMIT 5;
 
+-------SELECT užduotys su JOIN duoda is pirmo recepto indgridiiento id ir pvadinima
+SELECT
+    ig.id,
+    ig.pavadinimas
+FROM
+    receptas r
+JOIN receptas_ingridijientas_sujungimas ris ON
+    r.id = ris.receptas_id
+JOIN ingridijentas ig ON
+    ris.ingridijentas_id = ig.id
+WHERE
+    r.id = 1
+
+
+
 
 
