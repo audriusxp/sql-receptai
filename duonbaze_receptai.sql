@@ -507,6 +507,19 @@ JOIN ingridijentas ig ON
 WHERE
     r.id = 1
 
+    -------- grazinta is 2 recepto kalorijos ir ingridientu kainos
+    SELECT
+    ig.kaina,
+    ig.kalorijos_per100g
+FROM
+    receptas r
+JOIN receptas_ingridijientas_sujungimas ris ON
+    r.id = ris.receptas_id
+JOIN ingridijentas ig ON
+    ris.ingridijentas_id = ig.id
+WHERE
+    r.id = 2
+
 
 
 
